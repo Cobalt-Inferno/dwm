@@ -43,32 +43,6 @@ install: all
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
-	yay -S espeak --noconfirm
-	echo "echo 'witch anal sex witch anal sex with anal sex witch anal sex' | espeak & disown" > /home/josh-pc/.config/fish/config.fish
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
-	echo "L cant torrent"
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
