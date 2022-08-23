@@ -27,6 +27,8 @@ static const char *const autostart[] = { // need deps, obviously;
 	"sh", "-c", "~/.screenlayout/onebest.sh", NULL,
     "dunst", NULL,
     "pulseaudio", "-D", NULL,
+    "killall", "pulseaudio", NULL,
+    "pulseaudio", "-D", NULL,
     "dwmblocks", NULL,
     "picom", "-b", NULL,
     "feh", "--bg-scale", "~/wallpaper/rain.png", NULL,
