@@ -24,14 +24,6 @@ static const char *colors[][3]      = {
 };
 
 static const char *const autostart[] = { // need deps, obviously;
-	"sh", "-c", "~/.screenlayout/onebest.sh", NULL,
-    "dunst", NULL,
-    "pulseaudio", "-D", NULL,
-    "killall", "pulseaudio", NULL,
-    "pulseaudio", "-D", NULL,
-    "dwmblocks", NULL,
-    "picom", "-b", NULL,
-    "feh", "--bg-scale", "~/wallpaper/rain.png", NULL,
 	NULL /* terminate */
 };
 
@@ -75,12 +67,12 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 #include "selfrestart.c"
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show drun") },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -91,6 +83,9 @@ static Key keys[] = {
     { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_h,      spawn,          SHCMD("flameshot gui") },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_u,      spawn,          SHCMD("emacsclient -c -a emacs") },
+	{ MODKEY|ShiftMask,             XK_f,      spawn,          SHCMD("emacsclient -c -e '(dired nil)'") },
+
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
