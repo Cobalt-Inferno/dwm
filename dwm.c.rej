@@ -1,0 +1,29 @@
+--- dwm.c
++++ dwm.c
+@@ -40,6 +40,12 @@
+ #include <X11/extensions/Xinerama.h>
+ #endif /* XINERAMA */
+ #include <X11/Xft/Xft.h>
++#include <X11/Xlib-xcb.h>
++#include <xcb/res.h>
++#ifdef __OpenBSD__
++#include <sys/sysctl.h>
++#include <kvm.h>
++#endif /* __OpenBSD */
+ 
+ #include "drw.h"
+ #include "util.h"
+@@ -2353,10 +2574,12 @@ main(int argc, char *argv[])
+ 		fputs("warning: no locale support\n", stderr);
+ 	if (!(dpy = XOpenDisplay(NULL)))
+ 		die("dwm: cannot open display");
++	if (!(xcon = XGetXCBConnection(dpy)))
++		die("dwm: cannot get xcb connection\n");
+ 	checkotherwm();
+ 	setup();
+ #ifdef __OpenBSD__
+-	if (pledge("stdio rpath proc exec", NULL) == -1)
++	if (pledge("stdio rpath proc exec ps", NULL) == -1)
+ 		die("pledge");
+ #endif /* __OpenBSD__ */
+ 	scan();
